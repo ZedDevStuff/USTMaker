@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USTMaker", "USTMaker.csproj", "{C452C5B3-141F-4D02-ACCB-8FCC4A741FF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C452C5B3-141F-4D02-ACCB-8FCC4A741FF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C452C5B3-141F-4D02-ACCB-8FCC4A741FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C452C5B3-141F-4D02-ACCB-8FCC4A741FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C452C5B3-141F-4D02-ACCB-8FCC4A741FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82CAC908-B7AF-4E76-BD9C-68A23C0F3B84}
+	EndGlobalSection
+EndGlobal
