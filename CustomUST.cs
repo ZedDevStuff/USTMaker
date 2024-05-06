@@ -16,7 +16,7 @@ namespace USTManager.Data
         [JsonIgnore]//[JsonProperty(Order = 3)]
         public string Format { get; private set; }
         [JsonProperty("levels", Order = 4)]
-        public Dictionary<string, Dictionary<string, string>> Levels = [];
+        public Dictionary<string, Dictionary<string, string>> Levels = new();
 
         [JsonIgnore] public string Path;
         [JsonIgnore] public bool IsMerged = false;
@@ -113,7 +113,7 @@ namespace USTManager.Data
 
         private static Dictionary<string, string> TemplateLevel(params string[] tracks)
         {
-            Dictionary<string, string> level = [];
+            Dictionary<string, string> level = new();
             foreach (string track in tracks)
             {
                 level[track] = "relative/path/to/audio";

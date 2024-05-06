@@ -19,7 +19,19 @@ namespace USTMaker
     /// </summary>
     public partial class NewUSTDialog : Window
     {
-        public record USTDialogResult(string name, string author, string description, bool done);
+        public record USTDialogResult
+        {
+            public string Name, Author, Description;
+            public bool Done = false;
+            
+            public USTDialogResult(string name, string author, string description, bool done)
+            {
+                Name = name;
+                Author = author;
+                Description = description;
+                Done = done;
+            }
+        }
         public USTDialogResult Result = new("", "", "", false);
         public NewUSTDialog()
         {

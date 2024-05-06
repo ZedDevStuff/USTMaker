@@ -15,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using USTManager.Data;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace USTMaker
 {
@@ -39,9 +42,9 @@ namespace USTMaker
             var dialog = new NewUSTDialog();
             dialog.ShowDialog();
             var result = dialog.Result; 
-            if(result.done)
+            if(result.Done)
             {
-                CurrentUST = new(result.name, result.author, result.description);
+                CurrentUST = new(result.Name, result.Author, result.Description);
                 CurrentUST.Levels = new(CustomUST.GetTemplate().Levels);
                 Title = $"{CurrentUST.Name} by {CurrentUST.Author} - USTMaker";
                 DrawUST();
@@ -62,7 +65,16 @@ namespace USTMaker
             if(result != null && result == true)
             {
                 DirectoryInfo? ustLocation = new FileInfo(ofd.FileName).Directory;
-                CustomUST? ust = JsonConvert.DeserializeObject<CustomUST>(File.ReadAllText(ofd.FileName));
+                CustomUST? ust = null;
+                try
+                {
+                    ust = JsonConvert.DeserializeObject<CustomUST>(File.ReadAllText(ofd.FileName));
+                }
+                catch
+                {
+                    MessageBox.Show("Invalid ust file", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 if(ust != null && ustLocation != null)
                 {
                     Dictionary<string, Dictionary<string, string>> levels = new();
@@ -74,7 +86,7 @@ namespace USTMaker
                             string target = entry.Key, path = entry.Value;
                             if(!File.Exists(path))
                             {
-                                FileInfo? audio = ustLocation.GetFiles(path.Split(['\\', '/']).Last(), new EnumerationOptions() { RecurseSubdirectories = true}).FirstOrDefault();
+                                FileInfo? audio = ustLocation.GetFiles(path.Split(new char[] { '\\', '/' }).Last(), SearchOption.AllDirectories).FirstOrDefault();
                                 if(audio != null)
                                 {
                                     path = audio.FullName;
@@ -134,7 +146,6 @@ namespace USTMaker
             SaveFileDialog sfd = new();
             sfd.Title = "Select where to save the .ust file";
             sfd.Filter = "UST file | *.ust; *.ust.json";
-            sfd.CreateTestFile = false;
             sfd.AddExtension = true;
             string sanitizedName = string.Join("", CurrentUST.Name.Split(Path.GetInvalidFileNameChars()));
             sfd.FileName = sanitizedName;
@@ -142,20 +153,22 @@ namespace USTMaker
             if(result != null && result == true)
             {
                 File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(CurrentUST, Formatting.Indented));
-                MessageBox.Show("UST Saved");
+                MessageBox.Show("UST Saved", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void exportUst_Click(object sender, RoutedEventArgs e)
         {
             ApplyChanges();
-            OpenFolderDialog ofd = new();
-            ofd.Title = "Select where to create the UST folder";
-            bool? result = ofd.ShowDialog();
-            if(result != null && result == true)
+
+            
+            FolderBrowserDialog ofd = new();
+            ofd.Description = "Select where to create the UST folder";
+            DialogResult result = ofd.ShowDialog();
+            if(result == System.Windows.Forms.DialogResult.OK)
             {
                 string sanitizedName = string.Join("", CurrentUST.Name.Split(Path.GetInvalidPathChars()));
-                string basePath = Path.Combine(ofd.FolderName, sanitizedName);
+                string basePath = Path.Combine(ofd.SelectedPath, sanitizedName);
                 string audioPath = Path.Combine(basePath, "audio");
                 Directory.CreateDirectory(audioPath);
                 List<string> alreadyAddedAudio = new();
@@ -185,7 +198,7 @@ namespace USTMaker
                 finalUST.Levels = finalLevels;
                 File.WriteAllText(Path.Combine(basePath, sanitizedName + ".ust"), JsonConvert.SerializeObject(finalUST, Formatting.Indented));
 
-                MessageBox.Show("UST Exported");
+                MessageBox.Show("UST Exported", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         private void exportAsZip_Click(object sender, RoutedEventArgs e)
@@ -234,9 +247,9 @@ namespace USTMaker
                     finalUST.Levels = finalLevels;
                     var ustEntry = archive.CreateEntry(sanitizedName + ".ust");
                     byte[] buffer = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(finalUST, Formatting.Indented));
-                    ustEntry.Open().Write(buffer);
+                    ustEntry.Open().Write(buffer, 0, buffer.Length);
                     //new StreamWriter(ustEntry.Open()).Write(JsonConvert.SerializeObject(finalUST, Formatting.Indented));
-                    MessageBox.Show("UST Exported");
+                    MessageBox.Show("UST Exported", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }

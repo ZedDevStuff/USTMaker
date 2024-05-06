@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace USTMaker
 {
