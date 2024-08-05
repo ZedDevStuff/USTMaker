@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="USTMaker.NewUSTDialog"
+        Title="NewUSTDialog">
+  <DockPanel Margin="10,10,10,10">
+    <DockPanel DockPanel.Dock="Top">
+      <Label Content="Name" Width="100" DockPanel.Dock="Left"/>
+      <TextBox x:Name="name" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="New UST" VerticalAlignment="Top"/>
+    </DockPanel>
+    <DockPanel DockPanel.Dock="Top">
+      <Label Content="Author" Width="100" DockPanel.Dock="Left"/>
+      <TextBox x:Name="author" TextWrapping="Wrap" Text="Someone" VerticalAlignment="Top"/>
+    </DockPanel>
+    <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,0">
+      <UniformGrid Columns="2">
+        <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="cancel_Click"/>
+        <Button x:Name="done" Content="Done" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="done_Click"/>
+      </UniformGrid>
+    </DockPanel>
+    <DockPanel>
+      <Label Content="Description" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
+      <TextBox x:Name="description" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="This is an UST" AcceptsReturn="True" AcceptsTab="True"/>
+    </DockPanel>
+  </DockPanel>
+</Window>

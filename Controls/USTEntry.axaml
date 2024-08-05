@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="USTMaker.USTEntry">
+  <Grid RowDefinitions="Auto,*" HorizontalAlignment="Stretch">
+    <DockPanel>
+      <Button DockPanel.Dock="Right" x:Name="delete" VerticalAlignment="Stretch" Click="delete_Click">
+        <ui:FontIcon Glyph="&#xE106;" FontFamily="{StaticResource ResourceKey=SymbolThemeFontFamily}"/>
+      </Button>
+      <TextBox x:Name="name" Text="Text" />
+    </DockPanel>
+    <ListBox Grid.Row="1" x:Name="listBox">
+      <Button Click="NewEntry" VerticalAlignment="Stretch">
+        <ui:FontIcon Glyph="&#xE109;" FontFamily="{StaticResource ResourceKey=SymbolThemeFontFamily}"/>
+      </Button>
+    </ListBox>
+  </Grid>
+</UserControl>

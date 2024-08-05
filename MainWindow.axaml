@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="using:FluentAvalonia.UI.Controls"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="USTMaker.MainWindow"
+        Icon="/Assets/icon.png"
+        Title="USTMaker">
+  <DockPanel Background="{DynamicResource ResourceKey=ControlFillColorDefault}">
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="File">
+        <MenuItem x:Name="newUst" Header="New UST" Click="newUst_Click"/>
+        <MenuItem x:Name="openUst" Header="Open UST" Click="openUst_Click"/>
+        <MenuItem x:Name="saveUst" Header="Save UST File" Click="saveUst_Click"/>
+        <MenuItem x:Name="exportUst" Header="Export UST" Click="exportUst_Click"/>
+        <MenuItem x:Name="exportAsZip" Header="Export UST as zip" Click="exportAsZip_Click"/>
+      </MenuItem>
+    </Menu>
+    <ListBox x:Name="listBox" Margin="0,17.86,0,0">
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Vertical" />
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+      <Button x:Name="addLevel" Click="addLevel_Click">
+        <ui:FontIcon Glyph="&#xE109;" FontFamily="{StaticResource ResourceKey=SymbolThemeFontFamily}"/>
+      </Button>
+    </ListBox>
+  </DockPanel>
+</Window>
