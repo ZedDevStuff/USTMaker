@@ -17,7 +17,7 @@
     <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,0">
       <UniformGrid Columns="2">
         <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="cancel_Click"/>
-        <Button x:Name="done" Content="Done" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="done_Click"/>
+        <Button x:Name="done" Content="Done" Classes="accent" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="done_Click"/>
       </UniformGrid>
     </DockPanel>
     <DockPanel>
