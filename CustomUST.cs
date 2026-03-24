@@ -92,12 +92,15 @@ namespace USTManager.Data
                     { "7-4", TemplateLevel("outside1", "outside2", "outside3", "outside4", "outside5", "outside6",
                                            "inside1", "inside2", "inside3",
                                            "escape1", "escape2", "escape3") },
+                    { "8-1", standardTwo },
+                    { "8-2", TemplateLevel("intro", "clean1", "clean2", "battle1", "battle2", "leadup", "boss") },
+                    { "8-3", TemplateLevel("clean1", "clean2", "clean3", "battle1", "battle2", "battle3") },
+                    { "8-4", TemplateLevel("intro", "drone", "boss") },
 
                     // Prime Sanctums
                     { "P-1", TemplateLevel("intro1", "intro2", "intro3", "intro4", "boss1", "speech", "boss2") },
                     { "P-2", TemplateLevel("intro", "weezer", "clean", "battle", "boss1", "speech", "boss2") },
 
-                    // TODO: Fraud
                     // TODO: Treachery
                     // TODO: P-3
                     // TODO: Secret levels?
